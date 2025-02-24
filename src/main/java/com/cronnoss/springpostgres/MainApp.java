@@ -1,17 +1,15 @@
 package com.cronnoss.springpostgres;
 
-import com.cronnoss.springpostgres.config.DataSourceConfig;
-import com.cronnoss.springpostgres.repository.UserDao;
 import com.cronnoss.springpostgres.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+
+@ComponentScan(basePackages = "com.cronnoss.springpostgres")
 public class MainApp {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-                DataSourceConfig.class,
-                UserDao.class,
-                UserService.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainApp.class);
         UserService userService = context.getBean(UserService.class);
 
         // Testing CRUD operations

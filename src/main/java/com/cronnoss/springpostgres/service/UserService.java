@@ -1,6 +1,7 @@
 package com.cronnoss.springpostgres.service;
 
 import com.cronnoss.springpostgres.dto.User;
+import com.cronnoss.springpostgres.exception.UserNotFoundException;
 import com.cronnoss.springpostgres.repository.UserDao;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class UserService {
     }
 
     public Optional<User> getUser(Long id) {
-        return userDao.getUser(id);
+        return Optional.ofNullable(userDao.getUser(id).orElseThrow(() ->
+                new UserNotFoundException("User not found with id: " + id)));
     }
 
     public List<User> getAllUsers() {
