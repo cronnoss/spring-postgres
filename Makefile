@@ -4,6 +4,10 @@ run-postgres:
 create-db:
 	docker exec -it pg createdb --username=root --owner=root users
 
+create-schema:
+	docker exec -it pg psql -U root -d users \
+		-c "CREATE SCHEMA users;"
+
 drop-db:
 	docker exec -it pg dropdb users
 
@@ -11,4 +15,4 @@ db-connect:
 	docker exec -it pg psql -U root -d users \
 		-c "CREATE TABLE users (id BIGSERIAL PRIMARY KEY, username VARCHAR(255) unique);"
 
-.PHONY: run-postgres create-db drop-db db-connect
+.PHONY: run-postgres create-db drop-db create-schema db-connect
