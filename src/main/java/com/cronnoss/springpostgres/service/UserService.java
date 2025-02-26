@@ -1,35 +1,50 @@
 package com.cronnoss.springpostgres.service;
 
-import com.cronnoss.springpostgres.dto.User;
+import com.cronnoss.springpostgres.entities.User;
 import com.cronnoss.springpostgres.exception.UserNotFoundException;
-import com.cronnoss.springpostgres.repository.UserDao;
+import com.cronnoss.springpostgres.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
+@Slf4j
 @Service
-public class UserService {
-    private final UserDao userDao;
+@RequiredArgsConstructor
+public class UserService implements CommandLineRunner {
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    private final UserRepository userRepository;
+
+    @Override
+    public void run(String... args) {
+
+        createUser("john_doe");
+
+        getUser(2L);
+
+        getAllUsers().forEach(user -> log.info("User: " + user.getUsername()));
+
+        deleteUser(2L);
     }
 
-    public void createUser(String username) {
-        userDao.createUser(username);
+    public User createUser(String username) {
+        User user = new User();
+        user.setUsername(username);
+        return userRepository.save(user);
     }
 
-    public Optional<User> getUser(Long id) {
-        return Optional.ofNullable(userDao.getUser(id).orElseThrow(() ->
-                new UserNotFoundException("User not found with id: " + id)));
+    public User getUser(Long id) {
+        return userRepository.findById(id).orElseThrow(() ->
+                new UserNotFoundException("User not found with id: " + id));
     }
 
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userRepository.findAll();
     }
 
     public void deleteUser(Long id) {
-        userDao.deleteUser(id);
+        userRepository.deleteById(id);
     }
 }
