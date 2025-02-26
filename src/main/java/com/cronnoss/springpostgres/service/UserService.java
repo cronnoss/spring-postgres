@@ -1,6 +1,7 @@
 package com.cronnoss.springpostgres.service;
 
 import com.cronnoss.springpostgres.entities.User;
+import com.cronnoss.springpostgres.exception.UserNotFoundException;
 import com.cronnoss.springpostgres.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,11 +32,12 @@ public class UserService implements CommandLineRunner {
     public User createUser(String username) {
         User user = new User();
         user.setUsername(username);
-        return userRepository.createUser(user);
+        return userRepository.save(user);
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(() ->
+                new UserNotFoundException("User not found with id: " + id));
     }
 
     public List<User> getAllUsers() {

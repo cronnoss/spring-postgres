@@ -11,9 +11,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     // createUser
-    default User createUser(User user) {
-        return save(user);
-    }
+    User save(User user);
 
     // getUser
     Optional<User> findById(Long id);
