@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/migration/V1.0.0_1_create_users_table.sql
   - include:
       file: db/changelog/migration/V1.0.0_2_insert_into_users.sql
+  - include:
+      file: db/changelog/migration/V1.0.0_3_create_items_table.sql
+  - include:
+      file: db/changelog/migration/V1.0.0_4_insert_items_table.sql
