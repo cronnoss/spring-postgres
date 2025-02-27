@@ -32,6 +32,22 @@ Correct your service:
 
 - add a migration to the project to create database tables, initialize the test data set in the database
 
+# hw06
+
+- Improve the service, let it now store customer products.
+
+- Storage of products must be organized similarly to previously added users.
+
+- Each user can have several products, but each product has one user.
+
+- Customer product: id, account number, balance, product type (account, card), userId.
+
+- The service must store products.
+
+- The service must provide the ability to: request all products by userId, request a product by productId.
+
+- All changes to the database are performed through the migration tool added earlier.
+
 # how to run
 
 - install liquibase https://docs.liquibase.com/start/install/home.html
