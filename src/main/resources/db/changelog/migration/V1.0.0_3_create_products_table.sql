@@ -1,4 +1,4 @@
-CREATE TABLE items
+CREATE TABLE products
 (
     id         BIGSERIAL PRIMARY KEY,
     account_id BIGINT       NOT NULL,

@@ -34,13 +34,13 @@ Correct your service:
 
 # hw06
 
-- Improve the service, let it now store customer products(items).
+- Improve the service, let it now store customer products.
 
 - Storage of products must be organized similarly to previously added users.
 
 - Each user can have several products, but each product has one user.
 
-- Customer item: id, account number, balance, product type (account, card), userId.
+- Customer product: id, account number, balance, product type (account, card), userId.
 
 - The service must store products.
 
