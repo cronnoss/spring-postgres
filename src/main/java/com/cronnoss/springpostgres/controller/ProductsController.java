@@ -1,9 +1,9 @@
 package com.cronnoss.springpostgres.controller;
 
 import com.cronnoss.springpostgres.dto.ProductsResponse;
+import com.cronnoss.springpostgres.entities.ErrorResponse;
 import com.cronnoss.springpostgres.service.ProductsService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class ProductsController {
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> handleException(Exception e) {
-        return new ResponseEntity<>("An error occurred: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ErrorResponse handleException(Exception e) {
+        return new ErrorResponse("An error occurred: " + e.getMessage());
     }
 }

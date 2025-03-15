@@ -1,0 +1,10 @@
+package com.cronnoss.springpostgres.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class ErrorResponse {
+    private String message;
+}
