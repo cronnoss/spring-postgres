@@ -64,7 +64,9 @@ Correct your service:
 
 - install liquibase https://docs.liquibase.com/start/install/home.html
 - make run-postgres
-- make create-db
-- make create-schema
+- make create-db-users
+- make create-schema-users
 - cd products-app
+- mvn spring-boot:run
+- cd ../payments-app
 - mvn spring-boot:run
