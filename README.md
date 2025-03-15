@@ -48,10 +48,23 @@ Correct your service:
 
 - All changes to the database are performed through the migration tool added earlier.
 
+# hw07
+
+- Add the payment core service to one project with the product service as a separate module
+
+- Add integration of the payment service with the product service via RestTemplate (or RestClient)
+
+- Add the ability to request products from the payment service (the client sends a request to the payment service, the payment service requests the client's products from the product service and returns the result to the client)
+
+- Add the payment execution process, as well as the selection of a product, checking its existence and the sufficiency of funds on it
+
+- Add returning errors to the client about problems both on the payment service side and on the product service side
+
 # how to run
 
 - install liquibase https://docs.liquibase.com/start/install/home.html
 - make run-postgres
 - make create-db
 - make create-schema
+- cd products-app
 - mvn spring-boot:run
