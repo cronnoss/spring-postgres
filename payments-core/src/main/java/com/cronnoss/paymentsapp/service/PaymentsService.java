@@ -18,12 +18,12 @@ public class PaymentsService {
     }
 
     public ProductsResponse getProduct(Long id) {
-        return restTemplate.getForObject("http://localhost:8080/v1/products/" + id, ProductsResponse.class);
+        return restTemplate.getForObject("/v1/products/" + id, ProductsResponse.class);
     }
 
     public List<ProductsResponse> getAllProducts(Long userId) {
         ProductsResponse[] productsArray = restTemplate.getForObject(
-                "http://localhost:8080/v1/products/user/" + userId, ProductsResponse[].class);
+                "/v1/products/user/" + userId, ProductsResponse[].class);
         return productsArray != null ? Arrays.asList(productsArray) : Collections.emptyList();
     }
 
