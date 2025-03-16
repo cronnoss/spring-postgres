@@ -68,5 +68,5 @@ Correct your service:
 - make create-schema-users
 - cd products-app
 - mvn spring-boot:run
-- cd ../payments-app
+- cd ../payments-core
 - mvn spring-boot:run
