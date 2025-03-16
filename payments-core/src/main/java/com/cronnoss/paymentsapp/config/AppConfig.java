@@ -1,24 +1,29 @@
 package com.cronnoss.paymentsapp.config;
 
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Duration;
-
-import static java.time.temporal.ChronoUnit.SECONDS;
-
 
 @Configuration
+@ConfigurationPropertiesScan
 public class AppConfig {
 
+    private final IntegrationProperties integrationProperties;
+
+    public AppConfig(IntegrationProperties integrationProperties) {
+        this.integrationProperties = integrationProperties;
+    }
+
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate paymentsClient() {
+        RestTemplateProperties properties = integrationProperties.getPaymentsClientProperties();
         return new RestTemplateBuilder()
-                .rootUri("http://localhost:8080")
-                .setConnectTimeout(Duration.of(3, SECONDS))
-                .setReadTimeout(Duration.of(3, SECONDS))
+                .rootUri(properties.getUri())
+                .setConnectTimeout(properties.getConnectTimeout())
+                .setReadTimeout(properties.getReadTimeout())
                 .build();
     }
 }

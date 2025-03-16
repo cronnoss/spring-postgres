@@ -6,3 +6,10 @@ server:
   servlet:
     context-path: "/payments-app"
   port: 8181
+
+integration:
+  clients:
+    payments-client:
+      uri: "http://localhost:8080"
+      connect-timeout: 5s
+      read-timeout: 10s
