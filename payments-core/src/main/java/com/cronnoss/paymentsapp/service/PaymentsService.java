@@ -1,6 +1,7 @@
 package com.cronnoss.paymentsapp.service;
 
 import com.cronnoss.paymentsapp.dto.ProductsResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,19 +12,26 @@ import java.util.List;
 @Service
 public class PaymentsService {
 
+    private final String getProductByIdMethod;
+    private final String getUsersProductsMethod;
     private final RestTemplate restTemplate;
 
-    public PaymentsService(RestTemplate restTemplate) {
+    public PaymentsService(@Value("${service.get-product-by-id}") String getProductByIdMethod,
+                           @Value("${service.get-users-products}") String getUsersProductsMethod,
+                           RestTemplate restTemplate
+    ) {
+        this.getProductByIdMethod = getProductByIdMethod;
+        this.getUsersProductsMethod = getUsersProductsMethod;
         this.restTemplate = restTemplate;
     }
 
     public ProductsResponse getProduct(Long id) {
-        return restTemplate.getForObject("/v1/products/" + id, ProductsResponse.class);
+        return restTemplate.getForObject(getProductByIdMethod + id, ProductsResponse.class);
     }
 
     public List<ProductsResponse> getAllProducts(Long userId) {
         ProductsResponse[] productsArray = restTemplate.getForObject(
-                "/v1/products/user/" + userId, ProductsResponse[].class);
+                getUsersProductsMethod + userId, ProductsResponse[].class);
         return productsArray != null ? Arrays.asList(productsArray) : Collections.emptyList();
     }
 
