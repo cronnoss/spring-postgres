@@ -2,6 +2,7 @@ package com.cronnoss.paymentsapp.config;
 
 import com.cronnoss.paymentsapp.properties.IntegrationProperties;
 import com.cronnoss.paymentsapp.properties.RestTemplateProperties;
+import com.cronnoss.paymentsapp.properties.RestTemplateResponseErrorHandler;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +21,13 @@ public class AppConfig {
     }
 
     @Bean
-    public RestTemplate paymentsClient() {
+    public RestTemplate paymentsClient(RestTemplateResponseErrorHandler errorHandler) {
         RestTemplateProperties properties = integrationProperties.getPaymentsClientProperties();
         return new RestTemplateBuilder()
                 .rootUri(properties.getUri())
                 .setConnectTimeout(properties.getConnectTimeout())
                 .setReadTimeout(properties.getReadTimeout())
+                .errorHandler(errorHandler)
                 .build();
     }
 }
