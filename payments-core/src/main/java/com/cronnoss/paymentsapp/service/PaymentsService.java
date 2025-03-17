@@ -35,4 +35,14 @@ public class PaymentsService {
         return productsArray != null ? Arrays.asList(productsArray) : Collections.emptyList();
     }
 
+    public String payForProduct(Long userId, Long id, Integer amount) {
+        ProductsResponse product = getProduct(id);
+        if (product == null) {
+            return "Product not found";
+        }
+        if (product.getBalance() < amount) {
+            return "Insufficient funds";
+        }
+        return "Payment successful";
+    }
 }

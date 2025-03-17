@@ -1,11 +1,9 @@
 package com.cronnoss.paymentsapp.controller;
 
+import com.cronnoss.paymentsapp.dto.PaymentRequest;
 import com.cronnoss.paymentsapp.dto.ProductsResponse;
 import com.cronnoss.paymentsapp.service.PaymentsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,8 +22,17 @@ public class PaymentsController {
         return paymentsService.getProduct(id);
     }
 
-    @GetMapping("/products/user/{userId}")
+    @GetMapping("/user/{userId}/products")
     public List<ProductsResponse> getAllProducts(@PathVariable Long userId) {
         return paymentsService.getAllProducts(userId);
+    }
+
+    @PostMapping("/user/{userId}/products/{id}/pay")
+    public String payForProduct(
+            @PathVariable Long userId,
+            @PathVariable Long id,
+            @RequestBody PaymentRequest paymentRequest) {
+        Integer amount = paymentRequest.getAmount();
+        return paymentsService.payForProduct(userId, id, amount);
     }
 }
