@@ -1,4 +1,4 @@
-package com.cronnoss.paymentsapp.config;
+package com.cronnoss.paymentsapp.properties;
 
 import lombok.Getter;
 import lombok.Setter;

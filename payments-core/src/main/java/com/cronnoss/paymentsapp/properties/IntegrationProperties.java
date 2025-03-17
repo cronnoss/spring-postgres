@@ -1,4 +1,4 @@
-package com.cronnoss.paymentsapp.config;
+package com.cronnoss.paymentsapp.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
