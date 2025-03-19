@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: payments-core
+
+server:
+  servlet:
+    context-path: "/payments-app"
+  port: 8181
+
+service:
+  get-product-by-id: "/v1/products/"
+  get-users-products: "/v1/products/user/"
+
+integration:
+  clients:
+    payments-client:
+      uri: "http://localhost:8080"
+      connect-timeout: 5s
+      read-timeout: 10s

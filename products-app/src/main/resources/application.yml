@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/users
+    username: root
+    password: secretkey
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog.yaml
+    default-schema: users
+
+preliquibase:
+  sqlScriptReferences: classpath:db/changelog/schema/SCHEMA.sql
+  enabled: false
