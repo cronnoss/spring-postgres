@@ -1,4 +1,4 @@
-package com.cronnoss.productsapp.entities;
+package com.cronnoss.productsapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

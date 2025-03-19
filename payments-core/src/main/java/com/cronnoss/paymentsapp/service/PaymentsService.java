@@ -1,5 +1,6 @@
 package com.cronnoss.paymentsapp.service;
 
+import com.cronnoss.paymentsapp.dto.PaymentResponse;
 import com.cronnoss.paymentsapp.dto.ProductsResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,14 +36,14 @@ public class PaymentsService {
         return productsArray != null ? Arrays.asList(productsArray) : Collections.emptyList();
     }
 
-    public String payForProduct(Long userId, Long id, Integer amount) {
+    public PaymentResponse payForProduct(Long userId, Long id, Integer amount) {
         ProductsResponse product = getProduct(id);
         if (product == null) {
-            return "Product not found";
+            return new PaymentResponse("Product not found");
         }
         if (product.getBalance() < amount) {
-            return "Insufficient funds";
+            return new PaymentResponse("Insufficient funds");
         }
-        return "Payment successful";
+        return new PaymentResponse("Payment successful");
     }
 }

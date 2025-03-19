@@ -1,6 +1,7 @@
 package com.cronnoss.paymentsapp.controller;
 
 import com.cronnoss.paymentsapp.dto.PaymentRequest;
+import com.cronnoss.paymentsapp.dto.PaymentResponse;
 import com.cronnoss.paymentsapp.dto.ProductsResponse;
 import com.cronnoss.paymentsapp.service.PaymentsService;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class PaymentsController {
     }
 
     @PostMapping("/user/{userId}/products/{id}/pay")
-    public String payForProduct(
+    public PaymentResponse payForProduct(
             @PathVariable Long userId,
             @PathVariable Long id,
             @RequestBody PaymentRequest paymentRequest) {

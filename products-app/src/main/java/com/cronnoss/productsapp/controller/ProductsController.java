@@ -1,7 +1,7 @@
 package com.cronnoss.productsapp.controller;
 
+import com.cronnoss.productsapp.dto.ErrorResponse;
 import com.cronnoss.productsapp.dto.ProductsResponse;
-import com.cronnoss.productsapp.entities.ErrorResponse;
 import com.cronnoss.productsapp.service.ProductsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
